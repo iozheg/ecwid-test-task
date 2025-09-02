@@ -1,3 +1,7 @@
-import vuetify from 'eslint-config-vuetify'
+import vuetify from 'eslint-config-vuetify';
+import pluginVue from 'eslint-plugin-vue';
 
-export default vuetify()
+export default [
+  ...pluginVue.configs['flat/base'],
+  ...vuetify.configs['flat/base'],
+];
