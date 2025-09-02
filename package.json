@@ -26,6 +26,7 @@
     "@vue/tsconfig": "^0.7.0",
     "axios": "^1.11.0",
     "eslint": "^9.34.0",
+    "eslint-config-prettier": "^10.1.8",
     "eslint-config-vuetify": "^4.0.0",
     "eslint-plugin-vue": "^10.4.0",
     "npm-run-all2": "^7.0.2",
