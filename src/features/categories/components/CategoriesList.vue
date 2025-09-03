@@ -2,23 +2,22 @@
 import { useQueries, useQuery } from '@tanstack/vue-query';
 import { categoriesQueryOptions } from '../api/categoriesQueryOptions';
 import { productsQueryOptions } from '../api/productsQueryOptions';
+import CategoryListItem from './CategoryListItem.vue';
 
 const { data: categoriesData } = useQuery(categoriesQueryOptions());
 
 const mainCategories = computed(() =>
   categoriesData.value
-    ? categoriesData.value.items.filter(item => !item.parentId)
+    ? categoriesData.value.items.filter((item) => !item.parentId)
     : []
 );
 const mainCategoriesIds = computed(() =>
-  mainCategories.value.map(item => item.id)
+  mainCategories.value.map((item) => item.id)
 );
 
 const productsData = useQueries({
   queries: computed(() =>
-    mainCategoriesIds.value.map(id =>
-      productsQueryOptions([id], 10)
-    )
+    mainCategoriesIds.value.map((id) => productsQueryOptions([id], 3))
   ),
 });
 </script>
@@ -26,12 +25,11 @@ const productsData = useQueries({
 <template>
   <div>
     <h2>Categories</h2>
-    <ul>
-      <li v-for="(category, index) in mainCategories" :key="category.id">{{ category.name }}
-        <ul>
-          <li v-for="product in productsData[index]?.data?.items" :key="product.id">{{ product.name }}</li>
-        </ul>
-      </li>
-    </ul>
+    <CategoryListItem
+      v-for="(category, index) in mainCategories"
+      :key="category.id"
+      :category="category"
+      :products="productsData[index]?.data?.items || []"
+    />
   </div>
 </template>
