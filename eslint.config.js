@@ -21,8 +21,12 @@ export default typescriptEslint.config(
         parser: typescriptEslint.parser,
       },
     },
+    rules: {},
+  },
+  {
+    files: ['src/pages/**/*.vue'],
     rules: {
-      // your rules
+      'vue/multi-word-component-names': 'off',
     },
   },
   eslintConfigPrettier
