@@ -19,7 +19,7 @@ const goToProduct = (product: Product) => {
 
 <template>
   <v-sheet rounded>
-    <v-container align-items="left">
+    <v-container align-items="left" class="pl-0 pr-0">
       <v-row>
         <v-col>
           <v-btn variant="flat" size="large">{{ props.category.name }}</v-btn>
@@ -29,8 +29,9 @@ const goToProduct = (product: Product) => {
         <v-col
           v-for="product in props.products"
           :key="product.id"
-          md="4"
+          cols="6"
           sm="6"
+          md="4"
         >
           <v-card
             variant="flat"
@@ -38,8 +39,8 @@ const goToProduct = (product: Product) => {
             style="--v-hover-opacity: 0"
             @click="goToProduct(product)"
           >
-            <v-img :src="product.imageUrl" height="200px" />
-            <v-card-title>{{ product.name }}</v-card-title>
+            <v-img :src="product.imageUrl" height="300px" />
+            <v-card-title class="text-body-1">{{ product.name }}</v-card-title>
             <v-card-text>{{
               product.defaultDisplayedPriceFormatted
             }}</v-card-text>
@@ -50,7 +51,7 @@ const goToProduct = (product: Product) => {
                 block
                 border
                 @click="addToCart($event, product)"
-              ></v-btn>
+              />
             </v-card-actions>
           </v-card>
         </v-col>
@@ -58,9 +59,3 @@ const goToProduct = (product: Product) => {
     </v-container>
   </v-sheet>
 </template>
-
-<style scoped lang="scss">
-.v-card__overlay {
-  background-color: red;
-}
-</style>
