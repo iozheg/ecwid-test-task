@@ -3,6 +3,10 @@ import { useQueries, useQuery } from '@tanstack/vue-query';
 import { categoriesQueryOptions } from '../api/categoriesQueryOptions';
 import { productsQueryOptions } from '../api/productsQueryOptions';
 import CategoryListItem from './CategoryListItem.vue';
+import { useAppBar } from '@/composables/useAppBar';
+
+const { setTitle } = useAppBar();
+setTitle('Categories');
 
 const { data: categoriesData } = useQuery(categoriesQueryOptions());
 

@@ -24,7 +24,7 @@ export default typescriptEslint.config(
     rules: {},
   },
   {
-    files: ['src/pages/**/*.vue'],
+    files: ['src/pages/**/*.vue', 'src/layouts/**/*.vue'],
     rules: {
       'vue/multi-word-component-names': 'off',
     },
