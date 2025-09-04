@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Product, ProductOptionChoice } from '@/api/types';
 import { useAppBar } from '@/composables/useAppBar';
+import { useBreadcrumbs } from '@/composables/useBreadcrumbs';
 
 const props = defineProps<{
   product: Product;
@@ -8,6 +9,25 @@ const props = defineProps<{
 
 const { setTitle } = useAppBar();
 setTitle(props.product.name);
+
+const defaultCategory = props.product.categories.find(
+  (c) => c.id === props.product.defaultCategoryId
+);
+const { setBreadcrumbs } = useBreadcrumbs();
+setBreadcrumbs([
+  ...(defaultCategory
+    ? [
+        {
+          title: defaultCategory.name,
+          href: `/category/${defaultCategory.id}`,
+        },
+      ]
+    : []),
+  {
+    title: props.product.name,
+    href: `/products/${props.product.id}`,
+  },
+]);
 
 const images = computed(() => {
   return [

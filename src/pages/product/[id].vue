@@ -20,6 +20,8 @@ const { data, isLoading } = useQuery(
       'imageUrl',
       'galleryImages(id, url, smallThumbnailUrl)',
       'options',
+      'defaultCategoryId',
+      'categories(id, name)',
     ],
   })
 );

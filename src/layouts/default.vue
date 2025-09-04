@@ -21,6 +21,7 @@
   </v-navigation-drawer>
   <v-main>
     <v-container>
+      <v-breadcrumbs :items="breadcrumbs" divider="/"></v-breadcrumbs>
       <router-view />
     </v-container>
   </v-main>
@@ -30,6 +31,7 @@
 
 <script lang="ts" setup>
 import { useAppBar } from '@/composables/useAppBar';
+import { useBreadcrumbs } from '@/composables/useBreadcrumbs';
 
 const drawer = ref(false);
 const group = ref(null);
@@ -37,6 +39,8 @@ const group = ref(null);
 const items = ['Categories'];
 
 const { title } = useAppBar();
+
+const { breadcrumbs } = useBreadcrumbs();
 
 watch(group, () => {
   drawer.value = false;
