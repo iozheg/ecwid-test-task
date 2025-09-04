@@ -8,7 +8,11 @@ import { useAppBar } from '@/composables/useAppBar';
 const { setTitle } = useAppBar();
 setTitle('Categories');
 
-const { data: categoriesData } = useQuery(categoriesQueryOptions());
+const { data: categoriesData } = useQuery(
+  categoriesQueryOptions({
+    responseFields: ['id', 'name', 'parentId'],
+  })
+);
 
 const mainCategories = computed(() =>
   categoriesData.value
@@ -22,7 +26,17 @@ const mainCategoriesIds = computed(() =>
 const productsData = useQueries({
   queries: computed(() =>
     mainCategoriesIds.value.map((id) =>
-      productsQueryOptions({ categoryId: id, limit: 3 })
+      productsQueryOptions({
+        categoryId: id,
+        limit: 3,
+        responseFields: [
+          'id',
+          'name',
+          'defaultDisplayedPriceFormatted',
+          'sku',
+          'imageUrl',
+        ],
+      })
     )
   ),
 });
@@ -30,7 +44,6 @@ const productsData = useQueries({
 
 <template>
   <div>
-    <h2>Categories</h2>
     <CategoryListItem
       v-for="(category, index) in mainCategories"
       :key="category.id"

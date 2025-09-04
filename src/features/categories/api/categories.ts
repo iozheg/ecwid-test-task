@@ -2,17 +2,21 @@ import { API_URLS } from '@/api/axios';
 import type { Category, PaginatedResponse } from '@/api/types';
 import { getEntity, getPaginatedEntity } from '@/api/requests';
 
+export type GetCategoriesParams = {
+  parentId?: number;
+  responseFields?: string[];
+};
+
 export const getCategories = async (
-  parentId?: number,
-  responseFields: string[] = []
+  params: GetCategoriesParams = {}
 ): Promise<PaginatedResponse<Category>> => {
   const response = await getPaginatedEntity<Category>(
     API_URLS.CATEGORIES,
     {
-      parent: parentId,
+      parent: params.parentId,
     },
     {
-      responseFields,
+      responseFields: params.responseFields,
     }
   );
   return response;

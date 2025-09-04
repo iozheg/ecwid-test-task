@@ -9,6 +9,6 @@ import { useQuery } from '@tanstack/vue-query';
 
 const route = useRoute('/category/[id]');
 const { data, isLoading } = useQuery(
-  categoryQueryOptions(Number(route.params.id))
+  categoryQueryOptions(Number(route.params.id), ['id', 'name', 'parentId'])
 );
 </script>

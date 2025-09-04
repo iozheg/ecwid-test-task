@@ -1,13 +1,14 @@
 import { queryOptions } from '@tanstack/vue-query';
-import { getCategories, getCategoryById } from './categories';
+import {
+  getCategories,
+  getCategoryById,
+  type GetCategoriesParams,
+} from './categories';
 
-export const categoriesQueryOptions = (
-  parentId?: number,
-  responseFields: string[] = []
-) =>
+export const categoriesQueryOptions = (params: GetCategoriesParams) =>
   queryOptions({
-    queryKey: ['categories', parentId],
-    queryFn: () => getCategories(parentId, responseFields),
+    queryKey: ['categories', params.parentId],
+    queryFn: () => getCategories(params),
   });
 
 export const categoryQueryOptions = (

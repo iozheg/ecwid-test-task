@@ -24,7 +24,10 @@ setBreadcrumbs([
 ]);
 
 const { data: subCategories } = useQuery(
-  categoriesQueryOptions(props.category.id, ['id', 'name', 'parentId'])
+  categoriesQueryOptions({
+    parentId: props.category.id,
+    responseFields: ['id', 'name', 'parentId'],
+  })
 );
 
 const selectedSubCategory = ref<number | null>(null);
@@ -41,6 +44,13 @@ const productQuery = computed(() => {
     categoryId: props.category.id,
     subcategoriesIds: filterCategories.value,
     includeProductsFromSubcategories: true,
+    responseFields: [
+      'id',
+      'name',
+      'defaultDisplayedPriceFormatted',
+      'sku',
+      'imageUrl',
+    ],
   });
 });
 
