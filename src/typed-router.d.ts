@@ -20,7 +20,7 @@ declare module 'vue-router/auto-routes' {
   export interface RouteNamedMap {
     '/': RouteRecordInfo<'/', '/', Record<never, never>, Record<never, never>>,
     '/category/[id]': RouteRecordInfo<'/category/[id]', '/category/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
-    '/product': RouteRecordInfo<'/product', '/product', Record<never, never>, Record<never, never>>,
+    '/product/[id]': RouteRecordInfo<'/product/[id]', '/product/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
     '/shoppingcart': RouteRecordInfo<'/shoppingcart', '/shoppingcart', Record<never, never>, Record<never, never>>,
   }
 }

@@ -1,6 +1,7 @@
 import { API_URLS } from '@/api/axios';
-import { getPaginatedEntity } from '@/api/requests';
+import { getEntity, getPaginatedEntity } from '@/api/requests';
 import type {
+  EcwidEntityParams,
   PaginatedRequestParams,
   PaginatedResponse,
   Product,
@@ -11,6 +12,10 @@ export type GetProductsParams = {
   subcategoriesIds?: number[];
   includeProductsFromSubcategories?: boolean;
 } & PaginatedRequestParams;
+
+export type GetProductParams = {
+  id: number;
+} & EcwidEntityParams;
 
 export const getProducts = async (
   params: GetProductsParams
@@ -29,4 +34,10 @@ export const getProducts = async (
     params
   );
   return response;
+};
+
+export const getProduct = async (
+  params: GetProductParams
+): Promise<Product | null> => {
+  return getEntity<Product>(`${API_URLS.PRODUCTS}/${params.id}`, {}, params);
 };
