@@ -1,8 +1,8 @@
 import { queryOptions } from '@tanstack/vue-query';
-import { getProducts } from './products';
+import { getProducts, type GetProductsParams } from './products';
 
-export const productsQueryOptions = (categoriesIds: number[], limit: number) =>
+export const productsQueryOptions = (params: GetProductsParams) =>
   queryOptions({
-    queryKey: ['products', categoriesIds],
-    queryFn: () => getProducts(categoriesIds, limit),
+    queryKey: ['products', params.categoryId, params.subcategoriesIds],
+    queryFn: () => getProducts(params),
   });

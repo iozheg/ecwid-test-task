@@ -1,25 +1,32 @@
-import { API_URLS, axiosInstance } from '@/api/axios';
-import type { Category, PaginatedResponse, Product } from '../../../api/types';
+import { API_URLS } from '@/api/axios';
+import { getPaginatedEntity } from '@/api/requests';
+import type {
+  PaginatedRequestParams,
+  PaginatedResponse,
+  Product,
+} from '@/api/types';
+
+export type GetProductsParams = {
+  categoryId: number;
+  subcategoriesIds?: number[];
+  includeProductsFromSubcategories?: boolean;
+} & PaginatedRequestParams;
 
 export const getProducts = async (
-  categoriesIds: number[],
-  limit: number
+  params: GetProductsParams
 ): Promise<PaginatedResponse<Product>> => {
-  const response = await axiosInstance.get(API_URLS.PRODUCTS, {
-    params: {
-      categories: categoriesIds.join(','),
-      limit,
-    },
-  });
-  return response.data;
-};
+  const categoriesParam = params.subcategoriesIds?.length
+    ? params.subcategoriesIds.join(',')
+    : undefined;
 
-// export const getCategoryById = async (id: number): Promise<Category | null> => {
-//   try {
-//     const response = await axiosInstance.get(`${API_URLS.CATEGORIES}/${id}`);
-//     return response.data;
-//   } catch (error) {
-//     console.error(`Error fetching category with ID ${id}:`, error);
-//     return null;
-//   }
-// };
+  const response = await getPaginatedEntity<Product>(
+    API_URLS.PRODUCTS,
+    {
+      category: params.categoryId,
+      categories: categoriesParam,
+      includeProductsFromSubcategories: params.includeProductsFromSubcategories,
+    },
+    params
+  );
+  return response;
+};

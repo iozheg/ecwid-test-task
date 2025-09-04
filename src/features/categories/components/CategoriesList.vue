@@ -21,7 +21,9 @@ const mainCategoriesIds = computed(() =>
 
 const productsData = useQueries({
   queries: computed(() =>
-    mainCategoriesIds.value.map((id) => productsQueryOptions([id], 3))
+    mainCategoriesIds.value.map((id) =>
+      productsQueryOptions({ categoryId: id, limit: 3 })
+    )
   ),
 });
 </script>

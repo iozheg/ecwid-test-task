@@ -169,3 +169,11 @@ export interface PaginatedResponse<T> {
   limit: number;
   items: T[];
 }
+
+export type PaginatedRequestParams = {
+  limit?: number;
+} & EcwidEntityParams;
+
+export type EcwidEntityParams = {
+  responseFields?: string[];
+};

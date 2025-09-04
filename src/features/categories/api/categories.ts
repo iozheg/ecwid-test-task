@@ -1,17 +1,30 @@
-import { API_URLS, axiosInstance } from '@/api/axios';
-import type { Category, PaginatedResponse } from '../../../api/types';
+import { API_URLS } from '@/api/axios';
+import type { Category, PaginatedResponse } from '@/api/types';
+import { getEntity, getPaginatedEntity } from '@/api/requests';
 
-export const getCategories = async (): Promise<PaginatedResponse<Category>> => {
-  const response = await axiosInstance.get(API_URLS.CATEGORIES);
-  return response.data;
+export const getCategories = async (
+  parentId?: number,
+  responseFields: string[] = []
+): Promise<PaginatedResponse<Category>> => {
+  const response = await getPaginatedEntity<Category>(
+    API_URLS.CATEGORIES,
+    {
+      parent: parentId,
+    },
+    {
+      responseFields,
+    }
+  );
+  return response;
 };
 
-export const getCategoryById = async (id: number): Promise<Category | null> => {
-  try {
-    const response = await axiosInstance.get(`${API_URLS.CATEGORIES}/${id}`);
-    return response.data;
-  } catch (error) {
-    console.error(`Error fetching category with ID ${id}:`, error);
-    return null;
-  }
+export const getCategoryById = async (
+  id: number,
+  responseFields: string[] = []
+): Promise<Category | null> => {
+  return getEntity<Category>(
+    `${API_URLS.CATEGORIES}/${id}`,
+    {},
+    { responseFields }
+  );
 };
