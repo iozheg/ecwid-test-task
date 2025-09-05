@@ -19,7 +19,7 @@ const { setBreadcrumbs } = useBreadcrumbs();
 setBreadcrumbs([
   {
     title: props.category.name,
-    href: `/category/${props.category.id}`,
+    to: `/category/${props.category.id}`,
   },
 ]);
 

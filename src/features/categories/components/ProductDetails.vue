@@ -19,13 +19,13 @@ setBreadcrumbs([
     ? [
         {
           title: defaultCategory.name,
-          href: `/category/${defaultCategory.id}`,
+          to: `/category/${defaultCategory.id}`,
         },
       ]
     : []),
   {
     title: props.product.name,
-    href: `/products/${props.product.id}`,
+    to: `/product/${props.product.id}`,
   },
 ]);
 

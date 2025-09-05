@@ -1,15 +1,15 @@
 const homeItem = {
   title: 'Home',
   disabled: false,
-  href: '/',
+  to: '/',
 };
 const breadcrumbs = ref<
-  Array<{ title: string; href: string; disabled: boolean }>
+  Array<{ title: string; to: string; disabled: boolean }>
 >([]);
 
 export const useBreadcrumbs = () => {
   function setBreadcrumbs(
-    newBreadcrumbs: Array<{ title: string; href: string }>
+    newBreadcrumbs: Array<{ title: string; to: string }>
   ) {
     breadcrumbs.value = [];
     breadcrumbs.value.push(
