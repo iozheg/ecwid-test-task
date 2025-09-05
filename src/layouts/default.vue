@@ -18,7 +18,11 @@
   </v-app-bar>
 
   <v-navigation-drawer v-model="drawer" temporary>
-    <v-list :items="items"></v-list>
+    <v-list>
+      <v-list-item v-for="item in navigationItems" :key="item.to" :to="item.to">
+        {{ item.title }}
+      </v-list-item>
+    </v-list>
   </v-navigation-drawer>
   <v-main>
     <v-container>
@@ -38,7 +42,10 @@ import { useShoppingCartStore } from '@/stores/shoppingCart';
 const drawer = ref(false);
 const group = ref(null);
 
-const items = ['Categories'];
+const navigationItems = [
+  { title: 'Categories', to: '/' },
+  { title: 'Shopping Cart', to: '/shoppingcart' },
+];
 
 const { title } = useAppBar();
 
