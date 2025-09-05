@@ -12,7 +12,7 @@
         color="success"
         :content="cartStore.itemCount"
       >
-        <v-icon>mdi-cart</v-icon>
+        <v-icon icon="shopping_cart"></v-icon>
       </v-badge>
     </v-btn>
   </v-app-bar>

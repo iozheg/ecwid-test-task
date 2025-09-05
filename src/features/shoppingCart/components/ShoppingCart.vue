@@ -45,7 +45,7 @@
                     "
                   ></v-number-input>
                   <v-btn
-                    icon="mdi-delete"
+                    icon="delete"
                     variant="text"
                     class="text-red"
                     density="comfortable"
