@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { defineProps } from 'vue';
 import type { Category, Product } from '@/api/types';
 import ProductItem from './ProductItem.vue';
 

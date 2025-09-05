@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { defineProps } from 'vue';
 import type { Category, Product } from '@/api/types';
 import { useAppBar } from '@/composables/useAppBar';
 import { useQuery } from '@tanstack/vue-query';

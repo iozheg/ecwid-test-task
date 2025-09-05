@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { defineProps } from 'vue';
 import type { Product } from '@/api/types';
 import { useShoppingCartStore } from '@/stores/shoppingCart';
 
