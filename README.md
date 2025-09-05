@@ -2,6 +2,10 @@
 
 A Vue.js application showcasing product catalog and categories functionality, built as part of the Ecwid technical assessment.
 
+## Demo
+
+https://iozheg.github.io/ecwid-test-task/
+
 ## Technologies Used
 
 - **Vue 3** - Progressive JavaScript framework
