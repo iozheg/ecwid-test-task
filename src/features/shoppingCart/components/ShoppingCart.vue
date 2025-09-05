@@ -89,10 +89,14 @@
 </template>
 
 <script lang="ts" setup>
+import { useAppBar } from '@/composables/useAppBar';
 import { useBreadcrumbs } from '@/composables/useBreadcrumbs';
 import { productsQueryOptions } from '@/features/categories/api/productsQueryOptions';
 import { useShoppingCartStore } from '@/stores/shoppingCart';
 import { useQuery } from '@tanstack/vue-query';
+
+const { setTitle } = useAppBar();
+setTitle('Shopping Cart');
 
 const { setBreadcrumbs } = useBreadcrumbs();
 setBreadcrumbs([{ title: 'Shopping Cart', to: '' }]);
