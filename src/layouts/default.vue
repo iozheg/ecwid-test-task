@@ -6,14 +6,15 @@
     ></v-app-bar-nav-icon>
 
     <v-toolbar-title>{{ title }}</v-toolbar-title>
-
-    <template v-if="$vuetify.display.mdAndUp">
-      <!-- <v-btn icon="mdi-magnify" variant="text"></v-btn>
-
-      <v-btn icon="mdi-filter" variant="text"></v-btn> -->
-    </template>
-
-    <!-- <v-btn icon="mdi-dots-vertical" variant="text"></v-btn> -->
+    <v-btn stacked @click="goToShoppingCart">
+      <v-badge
+        location="top right"
+        color="success"
+        :content="cartStore.itemCount"
+      >
+        <v-icon>mdi-cart</v-icon>
+      </v-badge>
+    </v-btn>
   </v-app-bar>
 
   <v-navigation-drawer v-model="drawer" temporary>
@@ -32,6 +33,7 @@
 <script lang="ts" setup>
 import { useAppBar } from '@/composables/useAppBar';
 import { useBreadcrumbs } from '@/composables/useBreadcrumbs';
+import { useShoppingCartStore } from '@/stores/shoppingCart';
 
 const drawer = ref(false);
 const group = ref(null);
@@ -41,6 +43,12 @@ const items = ['Categories'];
 const { title } = useAppBar();
 
 const { breadcrumbs } = useBreadcrumbs();
+
+const cartStore = useShoppingCartStore();
+const router = useRouter();
+const goToShoppingCart = () => {
+  router.push('/shoppingcart');
+};
 
 watch(group, () => {
   drawer.value = false;

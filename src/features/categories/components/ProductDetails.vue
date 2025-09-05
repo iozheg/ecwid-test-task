@@ -2,6 +2,7 @@
 import type { Product, ProductOptionChoice } from '@/api/types';
 import { useAppBar } from '@/composables/useAppBar';
 import { useBreadcrumbs } from '@/composables/useBreadcrumbs';
+import { useShoppingCartStore } from '@/stores/shoppingCart';
 
 const props = defineProps<{
   product: Product;
@@ -47,8 +48,12 @@ if (sizeOptions) {
   size.value = sizeChoices[sizeOptions.defaultChoice] || null;
 }
 
+const cartStore = useShoppingCartStore();
 const addToCart = () => {
-  // Add the product to the cart with the selected size
+  cartStore.addToCart({
+    id: props.product.id,
+    quantity: 1,
+  });
 };
 </script>
 

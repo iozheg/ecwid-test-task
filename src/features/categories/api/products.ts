@@ -8,7 +8,8 @@ import type {
 } from '@/api/types';
 
 export type GetProductsParams = {
-  categoryId: number;
+  productIds?: number[];
+  categoryId?: number;
   subcategoriesIds?: number[];
   includeProductsFromSubcategories?: boolean;
 } & PaginatedRequestParams;
@@ -27,6 +28,7 @@ export const getProducts = async (
   const response = await getPaginatedEntity<Product>(
     API_URLS.PRODUCTS,
     {
+      productId: params.productIds?.join(','),
       category: params.categoryId,
       categories: categoriesParam,
       includeProductsFromSubcategories: params.includeProductsFromSubcategories,

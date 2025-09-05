@@ -4,9 +4,13 @@ import { categoriesQueryOptions } from '../api/categoriesQueryOptions';
 import { productsQueryOptions } from '../api/productsQueryOptions';
 import CategoryListItem from './CategoryListItem.vue';
 import { useAppBar } from '@/composables/useAppBar';
+import { useBreadcrumbs } from '@/composables/useBreadcrumbs';
 
 const { setTitle } = useAppBar();
 setTitle('Categories');
+
+const { setBreadcrumbs } = useBreadcrumbs();
+setBreadcrumbs([]);
 
 const { data: categoriesData } = useQuery(
   categoriesQueryOptions({

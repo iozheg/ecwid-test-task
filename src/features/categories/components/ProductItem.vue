@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { defineProps } from 'vue';
 import type { Product } from '@/api/types';
+import { useShoppingCartStore } from '@/stores/shoppingCart';
 
 defineProps<{
   product: Product;
 }>();
 
 const emits = defineEmits<{
-  (e: 'add-to-cart', product: Product): void;
   (e: 'product-clicked', product: Product): void;
 }>();
 
@@ -15,9 +15,13 @@ const goToProduct = (product: Product) => {
   emits('product-clicked', product);
 };
 
+const cartStore = useShoppingCartStore();
 const addToCart = (event: PointerEvent, product: Product) => {
   event.stopPropagation();
-  emits('add-to-cart', product);
+  cartStore.addToCart({
+    id: product.id,
+    quantity: 1,
+  });
 };
 </script>
 
