@@ -66,7 +66,6 @@ const addToCart = () => {
             v-for="image in images"
             :key="image.id"
             :src="image.url"
-            cover
           ></v-carousel-item>
         </v-carousel>
       </v-col>
