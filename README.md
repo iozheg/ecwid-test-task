@@ -4,7 +4,7 @@ A Vue.js application showcasing product catalog and categories functionality, bu
 
 ## Demo
 
-https://iozheg.github.io/ecwid-test-task/
+https://ecwid-test-task.netsev.dev/
 
 ## Technologies Used
 
